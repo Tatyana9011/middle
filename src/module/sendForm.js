@@ -54,7 +54,7 @@ const sendForm = () => {
         if (modal) {
           modal.style.display = 'none';
         }
-      }, 5000);
+      }, 3000);
     };
 
     if (validationData(form)) {

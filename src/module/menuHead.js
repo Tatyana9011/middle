@@ -13,11 +13,11 @@ const menuHead = () => {
     document.removeEventListener('keydown', escapeHandler);
   };
 
-  const escapeHandler = event => {
+  function escapeHandler(event) {
     if (event.code === 'Escape') {
       closeModal();
     }
-  };
+  }
 
   const addCloseModal = elem => {
     const modalClose = elem.querySelector('.close-form'),

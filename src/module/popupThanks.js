@@ -1,7 +1,7 @@
 // eslint-disable-next-line strict
 'use strict';
 
-const menuHead = () => {
+const popupThanks = () => {
 
   const openModalStart = elem => {
     elem.style.display = 'block';
@@ -13,15 +13,16 @@ const menuHead = () => {
     document.removeEventListener('keydown', escapeHandler);
   };
 
-  const escapeHandler = event => {
+  function escapeHandler(event) {
     if (event.code === 'Escape') {
       closeModal();
     }
-  };
+  }
 
   const addCloseModal = elem => {
     const modalClose = elem.querySelector('.close-form'),
-      overlay = elem.querySelector('.overlay');
+      overlay = elem.querySelector('.overlay'),
+      closeBtn = elem.querySelector('.close-btn');
 
     overlay.addEventListener('click', () => {
       closeModal(elem);
@@ -29,47 +30,16 @@ const menuHead = () => {
     modalClose.addEventListener('click', () => {
       closeModal(elem);
     });
-  };
-
-  const initPopup = target => {
-    if (target.closest('.club-select')) {
-      const menu = document.querySelector('.clubs-list-menu');
-
-      if (menu.style.display === 'block') {
-        menu.style.display = 'none';
-      } else {
-        menu.style.display = 'block';
-      }
-    }
-    if (target.closest('.open-popup')) {
-      const modalPopup = document.getElementById('free_visit_form');
-      openModalStart(modalPopup);
-      addCloseModal(modalPopup);
-    }
-    if (target.closest('.callback-btn')) {
-      const modalPopup = document.getElementById('thanks');
-      openModalStart(modalPopup);
-      addCloseModal(modalPopup);
-    }
-  };
-
-  const head = document.querySelector('.head');
-  head.addEventListener('click', event => {
-    const target = event.target;
-    initPopup(target);
-  });
-
-  const gift = document.querySelector('.fixed-gift');
-  if (gift) {
-    gift.addEventListener('click', () => {
-      const modalPopup = document.getElementById('gift');
-      openModalStart(modalPopup);
-      addCloseModal(modalPopup);
-      gift.style.display = 'none';
+    closeBtn.addEventListener('click', () => {
+      closeModal(elem);
     });
-  }
+  };
+
+  const modalPopup = document.getElementById('thanks');
+  openModalStart(modalPopup);
+  addCloseModal(modalPopup);
 };
 
-export default menuHead;
+export default popupThanks;
 
 
