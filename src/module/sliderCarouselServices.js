@@ -10,7 +10,7 @@ const carousel = () => {
   allSlider.style.cssText = `
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: start;
   `;
   arrowRight.style.top = '25% !important';
   arrowLeft.style.top = '25% !important';

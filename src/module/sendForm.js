@@ -31,7 +31,7 @@ const sendForm = () => {
       const loaderHtml = document.querySelector('.preloader');
       loaderHtml.remove();
       addStatus(form, 'Заявка отправлена', 'green');
-      popupThanks();
+      popupThanks('Заявка отправлена');
       form.reset();
     };
 
@@ -39,6 +39,7 @@ const sendForm = () => {
       const loaderHtml = document.querySelector('.preloader');
       loaderHtml.remove();
       addStatus(form, 'Ошибка запроса', 'red');
+      popupThanks('Ошибка запроса');
       form.reset();
     };
 

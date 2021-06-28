@@ -1,10 +1,15 @@
 // eslint-disable-next-line strict
 'use strict';
 
-const popupThanks = () => {
+const popupThanks = str => {
 
-  const openModalStart = elem => {
+  const openModalStart = (elem, str) => {
     elem.style.display = 'block';
+    if (str) {
+      const content = elem.querySelector('.form-content');
+      content.innerHTML = `<h4 style="color : red">${str}!</h4>
+      <p>Это учебный проект, потому запросы не работают!</p>`;
+    }
     document.addEventListener('keydown', escapeHandler);
   };
 
@@ -36,8 +41,16 @@ const popupThanks = () => {
   };
 
   const modalPopup = document.getElementById('thanks');
-  openModalStart(modalPopup);
-  addCloseModal(modalPopup);
+
+  if (str === 'Заявка отправлена') {
+    openModalStart(modalPopup, '');
+    addCloseModal(modalPopup);
+  }
+  if (str === 'Ошибка запроса') {
+    openModalStart(modalPopup, 'Ошибка запроса');
+    addCloseModal(modalPopup);
+  }
+
 };
 
 export default popupThanks;
