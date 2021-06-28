@@ -2,8 +2,12 @@
 'use strict';
 
 const smoothScroll = () => {
-  const scrollUp = document.querySelector('header');
-  const up = document.querySelector('#totop');
+  const scrollUp = document.querySelector('.header-main'),
+    up = document.querySelector('#totop'),
+    topMenu = document.querySelector('.top-menu'),
+    scrollNav = topMenu.querySelectorAll('a[href]');
+
+
   up.style.display = 'none';
 
   window.addEventListener('scroll', () => {
@@ -14,16 +18,32 @@ const smoothScroll = () => {
     }
   });
 
-  const click = () => {
-    up.addEventListener('click', () => {
-      scrollUp.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    });
-  };
 
-  click();
+  up.addEventListener('click', event => {
+    event.preventDefault();
+    scrollUp.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  });
+
+  scrollNav.forEach(btn => {
+    btn.addEventListener('click', event => {
+      event.preventDefault();
+      const id = btn.getAttribute("href");
+
+      if (id !== '#') {
+        const getId = document.querySelector(id);
+
+        if (getId !== null) {
+          getId.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        }
+      }
+    });
+  });
 
 };
 
