@@ -21,7 +21,7 @@ const sendForm = () => {
       body[key] = val;
     });
 
-    const postData = data => fetch('./mail.php', {
+    const postData = data => fetch('mail.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

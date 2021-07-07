@@ -11,6 +11,7 @@ const addStatus = (form, status, color) => {
   style.innerHTML = `
       .preloader{
       width: 100%;
+      height: 1px;
       text-align: center;
       color: ${color};
       margin: 5px 0;

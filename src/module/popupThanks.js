@@ -2,19 +2,24 @@
 'use strict';
 
 const popupThanks = str => {
+  const modalPopup = document.getElementById('thanks'),
+    overlay = modalPopup.querySelector('.overlay'),
+    closeBtn = modalPopup.querySelector('.close_icon');
 
-  const openModalStart = (elem, str) => {
-    elem.style.display = 'block';
-    if (str) {
-      const content = elem.querySelector('.form-content');
-      content.innerHTML = `<h4 style="color : red">${str}!</h4>
+  const openModalStart = strText => {
+    modalPopup.style.display = 'flex';
+
+    if (strText) {
+      const content = modalPopup.querySelector('.form-content');
+      content.innerHTML = `<h4 style="color : red">${strText}!</h4>
       <p>Это учебный проект, потому запросы не работают!</p>`;
     }
+
     document.addEventListener('keydown', escapeHandler);
   };
 
-  const closeModal = modal => {
-    modal.style.display = 'none';
+  const closeModal = () => {
+    modalPopup.style.display = 'none';
     document.removeEventListener('keydown', escapeHandler);
   };
 
@@ -24,33 +29,17 @@ const popupThanks = str => {
     }
   }
 
-  const addCloseModal = elem => {
-    const modalClose = elem.querySelector('.close-form'),
-      overlay = elem.querySelector('.overlay'),
-      closeBtn = elem.querySelector('.close-btn');
-
-    overlay.addEventListener('click', () => {
-      closeModal(elem);
-    });
-    modalClose.addEventListener('click', () => {
-      closeModal(elem);
-    });
-    closeBtn.addEventListener('click', () => {
-      closeModal(elem);
-    });
-  };
-
-  const modalPopup = document.getElementById('thanks');
+  overlay.addEventListener('click', closeModal);
+  closeBtn.addEventListener('click', closeModal);
 
   if (str === 'Заявка отправлена') {
-    openModalStart(modalPopup, '');
-    addCloseModal(modalPopup);
+    openModalStart('');
+    const closeBtnOk = modalPopup.querySelector('.close-btn');
+    closeBtnOk.addEventListener('click', closeModal);
   }
   if (str === 'Ошибка запроса') {
-    openModalStart(modalPopup, 'Ошибка запроса');
-    addCloseModal(modalPopup);
+    openModalStart('Ошибка запроса');
   }
-
 };
 
 export default popupThanks;
