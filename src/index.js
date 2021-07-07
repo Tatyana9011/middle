@@ -22,10 +22,9 @@ telMask();
 
 const forms = document.querySelectorAll('form');
 forms.forEach(form => {
-  validationForm(form);
+	validationForm(form);
 });
 
 sendForm();
 slider();
-
 

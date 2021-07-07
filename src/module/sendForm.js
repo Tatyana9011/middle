@@ -3,7 +3,7 @@
 import popupThanks from './popupThanks';
 import addStatus from './addStatus';
 import validationData from './validationData';
-
+import createInput from './createInput';
 const sendForm = () => {
 
   const forms = document.querySelectorAll('form');
@@ -12,6 +12,8 @@ const sendForm = () => {
   const fetchData = event => {
     event.preventDefault();
     const form = event.target;
+    const emailInput = createInput();
+    form.insertAdjacentHTML('afterend', emailInput);
     const formData = new FormData(form);
     const body = {};
 
@@ -19,7 +21,7 @@ const sendForm = () => {
       body[key] = val;
     });
 
-    const postData = data => fetch('./server.php', {
+    const postData = data => fetch('./mail.php', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -71,7 +73,6 @@ const sendForm = () => {
         .catch(error)
         .then(resultEnd);
     }
-
   };
 
   forms.forEach(form => {
